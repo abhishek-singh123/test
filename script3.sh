@@ -3,7 +3,7 @@
 ECHO='echo '
 for branch in $(git branch -a | sed 's/^\s*//' | sed 's/^remotes\///' | grep -v 'main$\|develop$'); do
   if ! ( [[ -f "$branch" ]] || [[ -d "$branch" ]] ) && [[ "$(git log $branch --before "1 month ago" | wc -l)" -eq 0 ]]; then
-    if [[ "$DRY_RUN" = "false" ]]; then
+    if [[ "$DRY_RUN" = "False" ]]; then
       ECHO=""
     fi
     local_branch_name=$(echo "$branch" | sed 's/remotes\/origin\///')
