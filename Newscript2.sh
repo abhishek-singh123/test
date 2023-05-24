@@ -3,8 +3,8 @@
 git fetch
 
 ECHO='echo '
-for branch in $(git branch -a | sed 's/^\s*//' | sed 's/^remotes\///' | grep -v 'main$\|devlop$\|qa$\|abhi29$\|abhi28$\|b2$'); do
-  if ! ( [[ -f "$branch" ]] || [[ -d "$branch" ]] ) && [[ "$(git log $branch --before 'May 22, 2023' | wc -l)" -eq 0 ]]; then
+for branch in $(git branch -a | sed 's/^\s*//' | sed 's/^remotes\///' | grep -v 'main$\|develop$\|qa$\|abhi22$\|b1$'); do
+  if ! ( [[ -f "$branch" ]] || [[ -d "$branch" ]] ) && [[ "$(git log $branch --before "1 day ago" | wc -l)" -eq 0 ]]; then
     if [[ "$DRY_RUN" = "False" ]]; then
       ECHO=""
     fi
@@ -13,4 +13,3 @@ for branch in $(git branch -a | sed 's/^\s*//' | sed 's/^remotes\///' | grep -v 
     $ECHO git push origin --delete "${local_branch_name}"
   fi
 done
-
